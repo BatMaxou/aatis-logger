@@ -1,9 +1,9 @@
-# Aatis Kernel
+# Aatis Logger
 
 ## Installation
 
 ```bash
-composer require aatis/kernel
+composer require aatis/logger
 ```
 
 ## Usage
