@@ -8,16 +8,16 @@
     "packages": [
         {
             "name": "aatis/file-manager",
-            "version": "0.0.0",
+            "version": "0.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/BatMaxou/aatis-FM.git",
-                "reference": "e4afead23231741fbcab0849ae527b5b690ce86b"
+                "reference": "211c94d4a9b60e2a588f3a68c29fa448eb9c0566"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/BatMaxou/aatis-FM/zipball/e4afead23231741fbcab0849ae527b5b690ce86b",
-                "reference": "e4afead23231741fbcab0849ae527b5b690ce86b",
+                "url": "https://api.github.com/repos/BatMaxou/aatis-FM/zipball/211c94d4a9b60e2a588f3a68c29fa448eb9c0566",
+                "reference": "211c94d4a9b60e2a588f3a68c29fa448eb9c0566",
                 "shasum": ""
             },
             "type": "library",
@@ -36,9 +36,9 @@
             "description": "File manager of Aatis",
             "support": {
                 "issues": "https://github.com/BatMaxou/aatis-FM/issues",
-                "source": "https://github.com/BatMaxou/aatis-FM/tree/0.0.0"
+                "source": "https://github.com/BatMaxou/aatis-FM/tree/0.0.1"
             },
-            "time": "2023-12-10T16:46:13+00:00"
+            "time": "2023-12-17T15:09:14+00:00"
         },
         {
             "name": "psr/log",
