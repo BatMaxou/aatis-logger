@@ -121,6 +121,8 @@ class Logger implements LoggerInterface
 
     private function createLine(LogLevel $level, string $message): string
     {
+        $tabs = strlen($level->name) < 6 ? "\t\t" : "\t";
+
         return '['
             .date_format(
                 new \DateTime(timezone: new \DateTimeZone($this->_timezone)),
@@ -128,7 +130,7 @@ class Logger implements LoggerInterface
             )
             .'] '
             .$level->name
-            .' '
+            .$tabs
             .$message
             ."\n";
     }
