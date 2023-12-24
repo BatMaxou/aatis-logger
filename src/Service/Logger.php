@@ -9,8 +9,11 @@ use Psr\Log\InvalidArgumentException;
 
 class Logger implements LoggerInterface
 {
-    public function __construct(private readonly FileManagerInterface $fileManager)
-    {
+    public function __construct(
+        private readonly FileManagerInterface $fileManager,
+        private readonly string $_log_path = '../var/log/app.log',
+        private readonly string $_timezone = 'Europe/Paris'
+    ) {
     }
 
     /**
@@ -77,18 +80,30 @@ class Logger implements LoggerInterface
         $this->log(LogLevel::DEBUG, $message, $context);
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function log($level, string|\Stringable $message, array $context = []): void
     {
-        $this->fileManager->read('path/to/file', false);
-        // LogLevel::cases()[$level] ?? throw new InvalidArgumentException('Invalid log level');
-        // not loglevel -> InvalidArgumentException
+        if (!in_array($level, LogLevel::cases())) {
+            throw new InvalidArgumentException('Invalid log level');
+        }
 
-        // if Stringable -> ToString() -> invalidArgumentException
+        if ($message instanceof \Stringable) {
+            $message = $message->__toString();
+        }
 
-        // placeholder into message {context_key.Re78}
+        if (!is_string($message)) {
+            throw new InvalidArgumentException('Message must be a string');
+        }
 
-        // open file / interpolate / write in
-        $this->interpolate($message, $context);
+        $content = $this->fileManager->read($this->_log_path);
+        $message = $this->interpolate($message, $context);
+
+        $this->fileManager->write(
+            $this->_log_path,
+            $content.$this->createLine($level, $message)
+        );
     }
 
     /**
@@ -102,5 +117,19 @@ class Logger implements LoggerInterface
         }
 
         return strtr($message, $replace);
+    }
+
+    private function createLine(LogLevel $level, string $message): string
+    {
+        return '['
+            .date_format(
+                new \DateTime(timezone: new \DateTimeZone($this->_timezone)),
+                'd-m-Y H:i:s'
+            )
+            .'] '
+            .$level->name
+            .' '
+            .$message
+            ."\n";
     }
 }
