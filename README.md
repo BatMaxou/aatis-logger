@@ -14,7 +14,7 @@ By default the log file is set to `var/app.log` and the timezone is set to `Euro
 
 ### Basic method
 
-Choose a **LogLevel** for the message you want to log and pass the message with it context.
+Choose a `LogLevel` for the message you want to log and pass the message with it context.
 
 Your can include variable into your message with the following syntax : `{variable}`
 
@@ -41,4 +41,17 @@ Like the basic method, each ones take the message and the context of it as param
     $logger->alert('Alert message');            // Output : [14-01-2024 22:06:12] ALERT     Alert message
     $logger->emergency('Emergency message');    // Output : [14-01-2024 22:06:12] EMERGENCY Emergency message
     $logger->debug('Debug message');            // Output : [14-01-2024 22:06:12] DEBUG     Debug message
+```
+
+## With Aatis Framework
+
+### Requirements
+
+Add the `Logger` to the `Container`:
+
+```yaml
+# In config/services.yaml file :
+
+include_services:
+    - 'Aatis\Logger\Service\Logger'
 ```
