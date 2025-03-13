@@ -3,16 +3,16 @@
 namespace Aatis\Logger\Service;
 
 use Aatis\FileManager\Interface\FileManagerInterface;
-use Psr\Log\LoggerInterface;
 use Aatis\Logger\Enum\LogLevel;
 use Psr\Log\InvalidArgumentException;
+use Psr\Log\LoggerInterface;
 
 class Logger implements LoggerInterface
 {
     public function __construct(
         private readonly FileManagerInterface $fileManager,
         private readonly string $_log_path = '../var/log/app.log',
-        private readonly string $_timezone = 'Europe/Paris'
+        private readonly string $_timezone = 'Europe/Paris',
     ) {
     }
 
