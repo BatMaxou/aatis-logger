@@ -97,6 +97,10 @@ class Logger implements LoggerInterface
             throw new InvalidArgumentException('Message must be a string');
         }
 
+        if (!$this->fileManager->exists($this->_log_path)) {
+            $this->fileManager->createFile($this->_log_path, recursive: true);
+        }
+
         $content = $this->fileManager->read($this->_log_path);
         $message = $this->interpolate($message, $context);
 
